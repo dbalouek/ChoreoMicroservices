@@ -6,7 +6,7 @@ from connexion.resolver import RestyResolver
 
 from services.provider import ItemsProvider
 
-
+# bindings for the Flask Injector
 def configure(binder: Binder) -> Binder:
     binder.bind(
         ItemsProvider,
