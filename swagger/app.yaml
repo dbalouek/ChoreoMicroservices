@@ -1,26 +1,112 @@
 swagger: "2.0"
 
 info:
-  title: "My first API"
-  version: "1.0"
+  version: 1.0.0
+  title: Indexer Service
+  license:
+    name: MIT
+
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
 
 paths:
-  /items/:
-    get:
-      responses:
-        '200':
-          description: 'Fetch a list of items'
+  /room/:
+    post:
+      operationId: api.room.class_instance.post
+      parameters:
+        - in: body
+          name: room
+          required: true
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/Item'
-
+            $ref: '#/definitions/Room'
+      responses:
+        '201':
+          description: 'Room indexed'
+          schema:
+            $ref: '#/definitions/Room'
 
 definitions:
-  Item:
+  ImageUrl:
     type: object
+    required:
+      - url
+
+    properties:
+      url:
+        type: string
+  Area:
+    type: object
+    required:
+      - name
+      - country
+      - city
     properties:
       id:
+        type: string
+      name:
+        type: string
+      coordinates:
+        $ref: '#/definitions/Coordinates'
+      country:
+        type: string
+      city:
+        type: string
+
+  Coordinates:
+    type: object
+    required:
+      - lat
+      - lon
+    properties:
+      lat:
+        type: number
+        format: float
+      lon:
+        type: number
+        format: float
+
+  Room:
+    type: object
+    required:
+      - name
+      - description
+      - price
+      - recurrency
+      - url
+      - monthly_price
+      - property_size
+      - provider
+      - coordinates
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      price:
         type: integer
-        format: int64
-      name: { type: string }
+      recurrency:
+        type: string
+      provider:
+        type: string
+      url:
+        type: string
+      monthly_price:
+        type: integer
+      property_size:
+        type: string
+      area:
+        $ref: '#/definitions/Area'
+      is_visible:
+        type: boolean
+      coordinates:
+        $ref: '#/definitions/Coordinates'
+      images:
+        type: array
+        $ref: '#/definitions/ImageUrl'
+

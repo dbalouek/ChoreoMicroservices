@@ -2,3 +2,4 @@ Flask
 connexion
 Flask-Injector
 fastavro
+elasticsearch>=6.0.0,<7.0.0

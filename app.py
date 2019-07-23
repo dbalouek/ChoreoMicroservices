@@ -1,15 +1,28 @@
+import os
+import connexion
+
 from injector import Binder
 from flask_injector import FlaskInjector
 from connexion.resolver import RestyResolver
-import connexion
-from services.provider import ItemsProvider
+
+from services.elastic import ElasticSearchIndex, ElasticSearchFactory
+from conf.elasticsearch_mapper import room_mapping
 
 
 def configure(binder: Binder) -> Binder:
     binder.bind(
-        ItemsProvider,
-        ItemsProvider([{'Name': 'Test 1'}])
+        ElasticSearchIndex,
+        ElasticSearchIndex(
+            ElasticSearchFactory(
+                os.environ['ELASTICSEARCH_HOST'],
+                os.environ['ELASTICSEARCH_PORT'],
+            ),
+            'rooms',
+            'room',
+            room_mapping
+        )
     )
+
     return binder
 
 
