@@ -9,17 +9,28 @@ paths:
     get:
       responses:
         '200':
-          description: 'Fetch a list of items'
+          description: 'Fetch a list of zip codes'
           schema:
             type: array
             items:
               $ref: '#/definitions/Item'
+    put:
+      parameters:
+        - name: item
+          in: body
+          schema:
+            $ref: '#/definitions/Item'
+      responses:
+        200:
+          description: Zip created
+        201:
+          description: Zip exists
 
 definitions:
   Item:
     type: object
+    required:
+      - zip-code
     properties:
-      id:
-        type: integer
-        format: int64
-      name: { type: string }
+      zip-code:
+        type: string
