@@ -3,16 +3,22 @@ from services.provider import ItemsProvider
 import tweepy
 import requests
 
+
 @inject
 def search(data_provider=ItemsProvider()) -> list:
-    return data_provider.get()
+    return data_provider.get_weather()
+
 
 @inject
-def put(item, data_provider=ItemsProvider()):
+def put_weather(item, data_provider=ItemsProvider()):
     zip = item["zip_code"]
     r = requests.get(url="https://api.openweathermap.org/data/2.5/weather?zip="+str(zip)+",us&units=imperial&appid=904eaa61902dba144dc85f29013ec210")
-    data_provider.put(r.json())
+    data_provider.put_weather(r.json())
+    return "Weather logged"
 
+
+@inject
+def put_tweet():
     cfg = { 
     "consumer_key"        : "txQIINOX1cnNz9EySfpKdTkD2",
     "consumer_secret"     : "NN2erSOqXXWRWwGvO7JlSid0VISx0bslE6wK6w0AJqF4uGy5Oo",
@@ -24,5 +30,4 @@ def put(item, data_provider=ItemsProvider()):
     api = tweepy.API(auth)
     tweet = "It is " + str(r.json()["main"]["temp"]) + " degrees Fahrenheit in " + r.json()["name"]
     api.update_status(status=tweet) 
-
     return "Tweet delivered"

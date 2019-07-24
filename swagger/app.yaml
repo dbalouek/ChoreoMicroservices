@@ -5,7 +5,7 @@ info:
   version: "1.0"
 
 paths:
-  /items/:
+  /zips/:
     get:
       responses:
         '200':
@@ -15,6 +15,7 @@ paths:
             items:
               $ref: '#/definitions/Item'
     put:
+      operationId: api.zips.put_zip
       parameters:
         - name: item
           in: body
@@ -22,9 +23,28 @@ paths:
             $ref: '#/definitions/Item'
       responses:
         200:
-          description: Zip created
+          description: Zip logged
         201:
           description: Zip exists
+  /items/:
+    get:
+      responses:
+        '200':
+          description: 'Fetch weather'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Item'
+    put:
+      operationId: api.items.put_weather
+      parameters:
+        - name: item
+          in: body
+          schema:
+            $ref: '#/definitions/Item'
+      responses:
+        200:
+          description: Weather logged
 
 definitions:
   Item:
