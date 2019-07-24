@@ -1,20 +1,15 @@
+from bson.json_util import dumps
+from pymongo import MongoClient
+import json
+
 class ItemsProvider(object):
     def __init__(self, items: list=[]):
-        self._items = items
+        self.client = MongoClient('localhost', 27017)
+        self.db = self.client['microservice']
+        self.collection = self.db['weather']
         
-
     def get(self, number_of_items: int=5) -> list:
-        if not self._items:
-            return []
-        
-        if number_of_items > len(self._items):
-            number_of_items = len(self._items)
-            
-        return self._items[0:number_of_items]
+        return json.loads(dumps(self.collection.find()))
 
     def put(self, item):
-        exists = item in self._items
-        if exists:
-            return 201
-        else:
-            self._items.append(item)
+        self.collection.insert_one(item)

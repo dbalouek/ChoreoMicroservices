@@ -30,7 +30,7 @@ definitions:
   Item:
     type: object
     required:
-      - zip-code
+      - zip_code
     properties:
-      zip-code:
+      zip_code:
         type: string
