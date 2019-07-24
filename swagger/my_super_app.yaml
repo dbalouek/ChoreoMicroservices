@@ -27,7 +27,13 @@ paths:
         '201':
           description: 'Room indexed'
           schema:
+<<<<<<< HEAD:swagger/app.yaml
             $ref: '#/definitions/Room'
+=======
+            type: array
+            items:
+              $ref: '#/definitions/Item'
+>>>>>>> parent of 5d844f0... fixed inject:swagger/my_super_app.yaml
 
 definitions:
   ImageUrl:

@@ -2,7 +2,7 @@ class ItemsProvider(object):
     def __init__(self, items: list=[]):
         self._items = items
         
-
+    # store items here rather in a list in app.items
     def get(self, number_of_items: int=5) -> list:
         if not self._items:
             return []
