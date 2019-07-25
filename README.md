@@ -14,4 +14,4 @@ create a python environment and install the requirements
 navigate to http://localhost:9090/ui/
 
 to make a put request, properly format a json with a zip code as a string and send the request,                                         
-the tweet should appear at https://twitter.com/mrswagbhinav/
+the tweet should appear at https://twitter.com/LunchboxScience (does not currently tweet b/c the services are seperated)
