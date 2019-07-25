@@ -20,10 +20,10 @@ def put_weather(item, data_provider=ItemsProvider()):
 @inject
 def put_tweet():
     cfg = { 
-    "consumer_key"        : "txQIINOX1cnNz9EySfpKdTkD2",
-    "consumer_secret"     : "NN2erSOqXXWRWwGvO7JlSid0VISx0bslE6wK6w0AJqF4uGy5Oo",
-    "access_token"        : "1638919993-biwwARnDUcIYUdr9zlveC8F5f8wVYhxLsf9Zry7",
-    "access_token_secret" : "hAKHQbuxt5LJD660zxKFyOvsZkuEaaJ4clKsyRcmiGn7m" 
+    "consumer_key"        : "lZkuaQGAgdbLBJuMVOWsgNSkh",
+    "consumer_secret"     : "KGCkLI4tPTArxgDuVpgV25lJ34l5hY4uu9BoVzZiv8YPfJ5ino",
+    "access_token"        : "1108469359675084803-SVQapMQPKV2wYIS1iZlbedOCNxrx28",
+    "access_token_secret" : "wEHj7K3KNHwE2oimNqGwwsJXtPrWHranUZShZ834X3nQY" 
     }
     auth = tweepy.OAuthHandler(cfg['consumer_key'], cfg['consumer_secret'])
     auth.set_access_token(cfg['access_token'], cfg['access_token_secret'])
