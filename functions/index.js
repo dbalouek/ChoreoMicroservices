@@ -10,11 +10,26 @@ let db = admin.firestore();
 exports.addZip = functions.https.onRequest(async (req, res) => {
     const input = req.query.text;
     let FieldValue = require('firebase-admin').firestore.FieldValue;
-    let newZip = db.collection('zips').doc(input).set({
-        zip_code: input,
-        timestamp: FieldValue.serverTimestamp()
-    });
-    res.redirect(200);
+    let oldZip = db.collection('zips').doc(input).get()
+      .then(doc => {
+        if(doc.exists) {
+          const oldDate = doc.data().timestamp.toDate();
+          var FIVE_MIN = 5 * 60 * 1000; /* ms */
+          if(((new Date) - oldDate) > FIVE_MIN) {
+            let newZip = db.collection('zips').doc(input).set({
+              zip_code: input,
+              timestamp: FieldValue.serverTimestamp()
+            });
+          } else {
+            console.log('There is a cooldown on '+doc.id);
+          }
+        }
+        return null;
+      })
+      .catch(err => {
+        console.log('error:', err);
+      });
+    res.redirect(302);
   });
 
 exports.addWeather = functions.firestore
@@ -29,6 +44,7 @@ exports.addWeather = functions.firestore
         request(url, (err, response, body) => {
         if(err){
           console.log('error:', err);
+          reject(Error('Could not get weather'));
         } else {
           console.log('body:', body);
           let weather = JSON.parse(body);
