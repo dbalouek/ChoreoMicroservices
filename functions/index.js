@@ -9,8 +9,10 @@ let db = admin.firestore();
 
 exports.addZip = functions.https.onRequest(async (req, res) => {
     const input = req.query.text;
+    let FieldValue = require('firebase-admin').firestore.FieldValue;
     let newZip = db.collection('zips').doc(input).set({
-        zip_code: input
+        zip_code: input,
+        timestamp: FieldValue.serverTimestamp()
     });
     res.redirect(200);
   });
