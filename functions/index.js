@@ -7,6 +7,11 @@ admin.initializeApp(functions.config().firebase);
 
 let db = admin.firestore();
 
+exports.awake = functions.https.onRequest(async (req, res) => {
+  console.log('awake');
+  res.status(200).send('ok');
+});
+
 exports.addZip = functions.https.onRequest(async (req, res) => {
     const input = req.query.text;
     let FieldValue = require('firebase-admin').firestore.FieldValue;
@@ -29,7 +34,7 @@ exports.addZip = functions.https.onRequest(async (req, res) => {
       .catch(err => {
         console.log('error:', err);
       });
-    res.redirect(302);
+    res.status(200).send('ok');
   });
 
 exports.addWeather = functions.firestore
@@ -71,11 +76,12 @@ exports.tweet = functions.firestore
       access_token:         '1108469359675084803-SVQapMQPKV2wYIS1iZlbedOCNxrx28',
       access_token_secret:  'wEHj7K3KNHwE2oimNqGwwsJXtPrWHranUZShZ834X3nQY'
     });
-    return T.post('statuses/update', { status: message }, (err, data, response) => {
+    T.post('statuses/update', { status: message }, (err, data, response) => {
       if(err){
         console.log('error:', err)
       } else {
         console.log(data)
       }
     });
+    return 0;
   });

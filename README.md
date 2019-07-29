@@ -11,6 +11,12 @@ The third and final cloud function triggers when the weather data is written. Th
 
 ## Benchmarks
 
-- getZip function takes 4ms
-- getWeather function takes 150-250ms
-- tweet function takes 8ms
+- getZip function takes <10ms
+- getWeather function takes 200ms
+- tweet function takes <10ms
+
+## Cold Benchmarks
+
+- getZip function takes 500ms
+- getWeather function takes 300ms
+- tweet function takes 50ms
