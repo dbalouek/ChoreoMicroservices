@@ -3,7 +3,8 @@
 ## How does it work
 The three microservices are all different cloud functions in firebase.
 
-An API is exposed to be able to send a zipcode through a url header. This zipcode is stored in firestore's noSQL database. 
+An API is exposed to be able to send a zipcode through a url header. This zipcode is stored in firestore's noSQL database.
+`curl https://us-central1-weather-microservice-d9385.cloudfunctions.net/addZip?text={ZIP_CODE}`
 
 Another cloud function triggers once this data written which makes a request to the OpenWeather API and retrieves weather data. The temperature along with the name of the city is stored in firestore.
 
@@ -33,5 +34,6 @@ To prevent spam and overloads, the service only fulfills requests every 5 minute
 
 - getZip function takes 500ms
 - getWeather function takes 300ms
+
 - tweet function takes 100ms
 - dependencies and global variables add on which result in a minute or two wait
