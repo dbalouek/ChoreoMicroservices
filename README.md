@@ -7,7 +7,21 @@ An API is exposed to be able to send a zipcode through a url header. This zipcod
 
 Another cloud function triggers once this data written which makes a request to the OpenWeather API and retrieves weather data. The temperature along with the name of the city is stored in firestore.
 
-The third and final cloud function triggers when the weather data is written. This function uses the data and sends a tweet out using the npm package twit. The tweets can be found at [@LunchboxScience](https://twitter.com/LunchboxScience)
+The third and final cloud function triggers when the weather data is written. This function uses the data and sends a tweet out using the npm package [Twit](https://www.npmjs.com/package/twit). The tweets can be found at [@LunchboxScience](https://twitter.com/LunchboxScience)
+
+There is another cloud function which does nothing but log into the console. This function exists for a cron job to ping every 10 minutes to keep the functions warm and prevent slow responses.
+
+To prevent spam and overloads, the service only fulfills requests every 5 minutes for each zip code. The Twitter API also has a limit of 2400 tweets per day with hourly caps. Once a cap is reached, the system will update its database but will not tweet weather.
+
+## Metrics
+
+- [Memory Usage](https://public.google.stackdriver.com/public/chart/17509575532610556248?drawMode=color&showLegend=true&theme=light)
+- [Document Reads](https://public.google.stackdriver.com/public/chart/6945007395628257807?drawMode=color&showLegend=true&theme=light)
+- [Document Writes](https://public.google.stackdriver.com/public/chart/1771319374688607598?drawMode=color&showLegend=true&theme=light)
+- [Total Service Execution Time](https://public.google.stackdriver.com/public/chart/16488086371681480029?drawMode=color&showLegend=true&theme=light)
+- [Function Execution Times](https://public.google.stackdriver.com/public/chart/6326970280502208863?drawMode=color&showLegend=true&theme=light)
+- [Memory Usage](https://public.google.stackdriver.com/public/chart/17509575532610556248?drawMode=color&showLegend=true&theme=light)
+- [Errors](https://public.google.stackdriver.com/public/chart/1714671653279637767?drawMode=color&showLegend=true&theme=light)
 
 ## Warm Benchmarks
 
@@ -20,5 +34,4 @@ The third and final cloud function triggers when the weather data is written. Th
 - getZip function takes 500ms
 - getWeather function takes 300ms
 - tweet function takes 100ms
-
-To prevent the functions from going cold and resulting in a minute or two wait, there is a cron job which runs a simple awake function to keep the functions hot.
+- dependencies and global variables add on which result in a minute or two wait
