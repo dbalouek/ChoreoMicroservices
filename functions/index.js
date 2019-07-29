@@ -56,14 +56,18 @@ exports.addWeather = functions.firestore
           console.log('error:', err);
           reject(Error('Could not get weather'));
         } else {
-          console.log('body:', body);
           let weather = JSON.parse(body);
           let FieldValue = require('firebase-admin').firestore.FieldValue;
-          let newWeather = db.collection('weather').doc(zipcode).set({
-            city: weather.name,
-            temp: weather.main.temp,
-            timestamp: FieldValue.serverTimestamp()
-          });
+          try {
+            let newWeather = db.collection('weather').doc(zipcode).set({
+              city: weather.name,
+              temp: weather.main.temp,
+              timestamp: FieldValue.serverTimestamp()
+            });
+            console.log('body:', body);
+          } catch(err){
+            console.log('error:', weather.message);
+          }
           resolve();
         }
         });
