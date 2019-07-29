@@ -28,6 +28,11 @@ exports.addZip = functions.https.onRequest(async (req, res) => {
           } else {
             console.log('There is a cooldown on '+doc.id);
           }
+        } else {
+          let newZip = db.collection('zips').doc(input).set({
+            zip_code: input,
+            timestamp: FieldValue.serverTimestamp()
+          });
         }
         return null;
       })
