@@ -10,7 +10,7 @@ Another cloud function triggers once this data written which makes a request to 
 
 The third and final cloud function triggers when the weather data is written. This function uses the data and sends a tweet out using the npm package [Twit](https://www.npmjs.com/package/twit). The tweets can be found at [@LunchboxScience](https://twitter.com/LunchboxScience)
 
-There is another cloud function which does nothing but log into the console. This function exists for a cron job to ping every 10 minutes to keep the functions warm and prevent slow responses.
+There is also a cloud scheduler which is basically a cron job. The job runs the all the microservices with dummy data to keep the functions warm and prevent a cold start.
 
 To prevent spam and overloads, the service only fulfills requests every 5 minutes for each zip code. The Twitter API also has a limit of 2400 tweets per day with hourly caps. Once a cap is reached, the system will update its database but will not tweet weather.
 
@@ -34,6 +34,5 @@ To prevent spam and overloads, the service only fulfills requests every 5 minute
 
 - getZip function takes 500ms
 - getWeather function takes 300ms
-
 - tweet function takes 100ms
-- dependencies and global variables add on which result in a minute or two wait
+- dependencies and global variables add on which result in two minute wait
