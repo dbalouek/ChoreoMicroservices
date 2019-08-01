@@ -10,9 +10,9 @@ Another cloud function triggers once this data written which makes a request to 
 
 The third and final cloud function triggers when the weather data is written. This function uses the data and sends a tweet out using the npm package [Twit](https://www.npmjs.com/package/twit). The tweets can be found at [@LunchboxScience](https://twitter.com/LunchboxScience)
 
-There is also a cloud scheduler which is basically a cron job. The job runs the all the microservices with dummy data to keep the functions warm and prevent a cold start.
+There is also a cloud scheduler which is basically a cron job. The job runs the all the microservices once a minute with dummy data to keep the functions warm and prevent a cold start.
 
-To prevent spam and overloads, the service only fulfills requests every 5 minutes for each zip code. The Twitter API also has a limit of 2400 tweets per day with hourly caps. Once a cap is reached, the system will update its database but will not tweet weather.
+To prevent spam and overloads, the service only fulfills requests every 5 minutes for each zip code. The OpenWeather API has a limit of 60 requests per minute, once that limit is reached, zip codes will be logged, but the weather will not update or be tweet. The Twitter API also has a limit of 2400 tweets per day with a three hour limit of 300 tweets. Once a limit is reached, the system will update its database but will not tweet weather.
 
 ## Metrics
 
