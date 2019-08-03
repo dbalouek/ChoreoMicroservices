@@ -16,12 +16,14 @@ app.get("/api/v1/zipcode", async (req, res) => {
 });
 
 app.get("/api/v1/zipcode/:zipcode", async (req, res) => {
-  const zipcode = await Zipcode.find({ zipcode: req.params.zipcode }).sort({date: -1});
+  const zipcode = await Zipcode.find({ zipcode: req.params.zipcode }).sort({
+    date: -1
+  });
   res.json(zipcode);
 });
 
 app.post("/api/v1/zipcode", async (req, res) => {
-  const zipcode = new Zipcode({ 
+  const zipcode = new Zipcode({
     zipcode: req.body.name
     // city: city
   });

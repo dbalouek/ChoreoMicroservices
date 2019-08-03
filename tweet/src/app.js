@@ -21,7 +21,9 @@ app.get("/api/v1/tweet", async (req, res) => {
 });
 
 app.post("/api/v1/tweet", async (req, res) => {
-  const weather = await Weather.find({ zipcode: req.body.name }).sort({date: -1});
+  const weather = await Weather.find({ zipcode: req.body.name }).sort({
+    date: -1
+  });
   let data = weather[0];
   const message = `It is ${data.temp} in ${data.city}`;
 
