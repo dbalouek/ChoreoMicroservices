@@ -1,0 +1,70 @@
+version: '3'
+services:
+
+  web:
+    image: web
+    deploy:
+      replicas: 2
+    ports:
+      - 3000:3000
+
+  tweet:
+    image: tweet
+    deploy:
+      replicas: 2
+    ports:
+      - 3001:3000
+    depends_on: 
+      - db
+    environment:
+      - MONGO_DB_URI=mongodb://db/microservices
+
+  zipcode:
+    image: zipcode
+    deploy:
+      replicas: 2
+    ports:
+      - 3002:3000
+    depends_on: 
+      - db
+    environment:
+      - MONGO_DB_URI=mongodb://db/microservices
+
+  weather:
+    image: weather
+    deploy:
+      replicas: 2
+    ports:
+      - 3003:3000
+    depends_on: 
+      - db
+    environment:
+      - MONGO_DB_URI=mongodb://db/microservices
+  
+  db:
+    image: mongo
+    ports:
+      - 27017:27017
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - 8080:8080
+    volumes:
+      - ./web/public:/srv/www/static
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - web
+      - zipcode
+      - tweet
+      - weather
+
+  visualizer:
+    image: dockersamples/visualizer
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    ports:
+      - 9000:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
