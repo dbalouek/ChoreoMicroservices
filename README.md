@@ -31,7 +31,7 @@ To tear down the stack:
 
 ## Running
 
-The UI is located at http://localhost:8080/ (doesn't work that well right now)
+The UI is located at http://localhost:8080
 
 Visualizer to see where the containers are running is located at http://localhost:9000 (only if using swarm)
 

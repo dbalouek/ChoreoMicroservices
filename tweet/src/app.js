@@ -25,7 +25,7 @@ app.post("/api/v1/tweet", async (req, res) => {
     date: -1
   });
   let data = weather[0];
-  const message = `It is ${data.temp} in ${data.city}`;
+  const message = `It is ${data.temp} degrees in ${data.city}`;
 
   const T = new Twit({
     consumer_key: "lZkuaQGAgdbLBJuMVOWsgNSkh",
