@@ -11,7 +11,7 @@ Run the containers `docker-compose up -d`
 
 ## Setting Up with Swarm
 
-Swarm is used for production whereas compose is for testing. Still need to install Docker as well as the three required images: [node](https://hub.docker.com/_/node) |
+Still need to install Docker as well as the three required images: [node](https://hub.docker.com/_/node) |
 [nginx](https://hub.docker.com/_/nginx) | [mongo](https://hub.docker.com/_/mongo)
 
 Build each service:  
@@ -34,6 +34,8 @@ To tear down the stack:
 The UI is located at http://localhost:8080
 
 Visualizer to see where the containers are running is located at http://localhost:9000 (only if using swarm)
+
+[API Docs](https://documenter.getpostman.com/view/6820223/SVYrsJcX?version=latest#42887a5e-6962-4219-9283-b5b21f3a393a)
 
 **GET** Request to http://localhost:8080/api/v1/zipcode will return all the inputted zipcodes
 
@@ -72,4 +74,3 @@ Swarm also gives us horizontal scaling. If the service gets a ton of traffic one
 ## TODO
 
 - Fix errors with wrong invalid zipcodes
-- Fix the UI
