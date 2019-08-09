@@ -1,5 +1,6 @@
 const express = require("express");
 const Tweet = require("./models/tweet_model");
+const Weather = require("./models/weather_model");
 const app = express();
 const bodyParser = require("body-parser");
 const Twit = require("twit");
