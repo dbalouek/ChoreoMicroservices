@@ -37,7 +37,10 @@ app.post("/api/v1/tweet", async (req, res) => {
       if (err) {
         res.json(err);
       } else {
-        const savedTweet = await message.save();
+        const tweet = new Weather({
+          message: message
+        });
+        const savedTweet = await tweet.save();
         res.json(data);
       }
     }
