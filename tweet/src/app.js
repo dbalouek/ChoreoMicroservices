@@ -29,14 +29,18 @@ app.post("/api/v1/tweet", async (req, res) => {
     access_token_secret: "wEHj7K3KNHwE2oimNqGwwsJXtPrWHranUZShZ834X3nQY"
   });
 
-  T.post("statuses/update", { status: message }, (err, data, response) => {
-    if (err) {
-      res.json(err);
-    } else {
-      const savedTweet = await message.save();
-      res.json(data);
+  T.post(
+    "statuses/update",
+    { status: message },
+    async (err, data, response) => {
+      if (err) {
+        res.json(err);
+      } else {
+        const savedTweet = await message.save();
+        res.json(data);
+      }
     }
-  });
+  );
 });
 
 module.exports = app;
