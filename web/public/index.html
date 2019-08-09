@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Tweet</title>
+    <title>ChoreoMicroservices</title>
     <style>
       #matches {
         position: absolute;
@@ -31,6 +31,7 @@
       <input type="submit" value="submit" />
     </form>
     <ul id="matches"></ul>
+
     <script>
       const API = (() => {
         const makeSaveFunc = (selector, postNameFunc) => () => {
@@ -42,21 +43,25 @@
             console.log("--------------------------");
           }
           return false;
-        }; 
+        };
 
         const makePostFunc = uri => val => {
           fetch(uri, {
             method: "POST",
             body: JSON.stringify({ name: val }),
             headers: {
-              "Accept": "application/json",
+              Accept: "application/json",
               "Content-Type": "application/json"
             }
           });
         };
 
-        const postZipcode = makePostFunc("http://localhost:8080/api/v1/zipcode");
-        const postWeather = makePostFunc("http://localhost:8080/api/v1/weather");
+        const postZipcode = makePostFunc(
+          "http://localhost:8080/api/v1/zipcode"
+        );
+        const postWeather = makePostFunc(
+          "http://localhost:8080/api/v1/weather"
+        );
         const postTweet = makePostFunc("http://localhost:8080/api/v1/tweet");
 
         return {

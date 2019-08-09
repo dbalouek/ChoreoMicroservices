@@ -1,6 +1,5 @@
 const express = require("express");
-const Zipcode = require("./models/zipcode_model");
-const Weather = require("./models/weather_model");
+const Tweet = require("./models/tweet");
 const app = express();
 const bodyParser = require("body-parser");
 const Twit = require("twit");
@@ -12,12 +11,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/v1/tweet", async (req, res) => {
-  const zipcodePromise = Zipcode.find({});
-  const weatherPromise = Weather.find({});
-  const promises = [zipcodePromise, weatherPromise];
-  const [zipcode, weather] = await Promise.all(promises);
-
-  res.json(zipcode.concat(weather));
+  const tweet = await Tweet.find({});
+  res.json(tweet);
 });
 
 app.post("/api/v1/tweet", async (req, res) => {
@@ -38,6 +33,7 @@ app.post("/api/v1/tweet", async (req, res) => {
     if (err) {
       res.json(err);
     } else {
+      const savedTweet = await message.save();
       res.json(data);
     }
   });

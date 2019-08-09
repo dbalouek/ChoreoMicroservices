@@ -2,7 +2,6 @@ const express = require("express");
 const Zipcode = require("./models/zipcode_model");
 const app = express();
 const bodyParser = require("body-parser");
-const request = require("request");
 
 app.use(bodyParser.json());
 
