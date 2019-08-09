@@ -1,5 +1,5 @@
 const express = require("express");
-const Tweet = require("./models/tweet");
+const Tweet = require("./models/tweet_model");
 const app = express();
 const bodyParser = require("body-parser");
 const Twit = require("twit");
