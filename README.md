@@ -1,5 +1,14 @@
 # ChoreoMicroservices
 
+## Connecting to Chameleon Cloud
+
+Start an SSH tunnel to the instance `ssh -L 8080:localhost:8080 cc@${FLOATING_IP_ADDR}`
+
+Install git `sudo yum install git`
+
+Clone the repo and checkout the 'express' branch, then run the [install.sh](https://github.com/dbalouek/ChoreoMicroservices/blob/express/install.sh) script `./install.sh`   
+The script sets up compose and runs the containers so there is no need to do anything else.
+
 ## Setting Up with Compose
 
 Install Docker as well as the three required images: [node](https://hub.docker.com/_/node) |
