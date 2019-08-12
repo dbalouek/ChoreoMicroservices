@@ -6,7 +6,14 @@ Start an SSH tunnel to the instance `ssh -L 8080:localhost:8080 cc@${FLOATING_IP
 
 Install git `sudo yum install git`
 
-Clone the repo and checkout the 'express' branch, then run the [install.sh](https://github.com/dbalouek/ChoreoMicroservices/blob/express/install.sh) script `./install.sh`   
+[Ubuntu]
+Install docker, docker-compose, docker.io packages
+
+Clone the repo and checkout the 'express' branch
+git clone https://github.com/dbalouek/ChoreoMicroservices.git
+git checkout express
+
+then run the [install.sh](https://github.com/dbalouek/ChoreoMicroservices/blob/express/install.sh) script `./install.sh`   
 The script sets up compose and runs the containers so there is no need to do anything else.
 
 ## Setting Up with Compose
