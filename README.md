@@ -15,6 +15,8 @@ Clone the repo and checkout the 'express' branch:
 git clone https://github.com/dbalouek/ChoreoMicroservices.git
 cd ChoreoMicroservices
 git checkout express
+chmod +x install.sh
+./install.sh
 ```
 
 then run the [install.sh](https://github.com/dbalouek/ChoreoMicroservices/blob/express/install.sh) script `./install.sh`
