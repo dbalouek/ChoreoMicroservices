@@ -2,18 +2,22 @@
 
 ## Connecting to Chameleon Cloud
 
-Start an SSH tunnel to the instance `ssh -L 8080:localhost:8080 cc@${FLOATING_IP_ADDR}`
+Start an SSH tunnel to the instance: `ssh -L 8080:localhost:8080 cc@{FLOATING_IP_ADDR}`
 
-Install git `sudo yum install git`
+Install git: `sudo yum install git`
 
 [Ubuntu]
 Install docker, docker-compose, docker.io packages
 
-Clone the repo and checkout the 'express' branch
+Clone the repo and checkout the 'express' branch:
+
+```
 git clone https://github.com/dbalouek/ChoreoMicroservices.git
 git checkout express
+```
 
-then run the [install.sh](https://github.com/dbalouek/ChoreoMicroservices/blob/express/install.sh) script `./install.sh`   
+then run the [install.sh](https://github.com/dbalouek/ChoreoMicroservices/blob/express/install.sh) script `./install.sh`
+
 The script sets up compose and runs the containers so there is no need to do anything else.
 
 ## Setting Up with Compose
@@ -21,29 +25,37 @@ The script sets up compose and runs the containers so there is no need to do any
 Install Docker as well as the three required images: [node](https://hub.docker.com/_/node) |
 [nginx](https://hub.docker.com/_/nginx) | [mongo](https://hub.docker.com/_/mongo)
 
-CD to the project dir and build the containers `docker-compose build`
+CD to the project dir and build the containers: `docker-compose build`
 
-Run the containers `docker-compose up -d`
+Run the containers: `docker-compose up -d`
 
 ## Setting Up with Swarm
 
 Still need to install Docker as well as the three required images: [node](https://hub.docker.com/_/node) |
 [nginx](https://hub.docker.com/_/nginx) | [mongo](https://hub.docker.com/_/mongo)
 
-Build each service:  
-`docker build -t web -f web/Dockerfile web`  
-`docker build -t zipcode -f zipcode/Dockerfile zipcode`  
-`docker build -t weather -f weather/Dockerfile weather`  
-`docker build -t tweet -f tweet/Dockerfile tweet`  
+Build each service:
 
-Initialize and deploy the stack:  
-`docker swarm init`  
-`docker stack deploy -c ./docker-stack.yml microservice`  
+```
+docker build -t web -f web/Dockerfile web
+docker build -t zipcode -f zipcode/Dockerfile zipcode
+docker build -t weather -f weather/Dockerfile weather
+docker build -t tweet -f tweet/Dockerfile tweet
+```
 
-To tear down the stack:  
-`docker stack rm microservice`  
-`docker swarm leave --force`
+Initialize and deploy the stack:
 
+```
+docker swarm init
+docker stack deploy -c ./docker-stack.yml microservice
+```
+
+To tear down the stack:
+
+```
+docker stack rm microservice
+docker swarm leave --force
+```
 
 ## Running
 
@@ -65,7 +77,7 @@ _you can also query for a specific zipcode by adding /{zipcode} after the URL fo
 
 **POST** Request to http://localhost:8080/api/v1/tweet will tweet the most recently added weather for the zip code
 
-**POST** Requests must formatted as follows: `{"name": "{zipcode}"}`
+**POST** Requests must formatted as follows: `{"name": "<zipcode>"}`
 
 ## How does it work
 
