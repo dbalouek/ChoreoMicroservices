@@ -10,6 +10,9 @@ sudo chmod +x /usr/local/bin/docker-compose
 # starts the docker services
 sudo systemctl enable docker
 
+# if the previous command didn't work
+sudo service docker start
+
 # downloads the three required images
 sudo docker pull node
 sudo docker pull nginx
