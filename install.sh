@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # installs docker
-sudo yum install docker-ce
+sudo yum install docker
 
 # installs docker-compose
 sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose

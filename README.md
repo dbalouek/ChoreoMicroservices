@@ -13,6 +13,7 @@ Clone the repo and checkout the 'express' branch:
 
 ```
 git clone https://github.com/dbalouek/ChoreoMicroservices.git
+cd ChoreoMicroservices
 git checkout express
 ```
 
