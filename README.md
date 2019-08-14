@@ -2,24 +2,24 @@
 
 ## Connecting to Chameleon Cloud
 
-Start an SSH tunnel to the instance: `ssh -L 8080:localhost:8080 cc@{FLOATING_IP_ADDR}`
+Start an SSH tunnel to the instance: `ssh -L 8080:localhost:8080 cc@$FLOATING_IP`
 
-Install git: `sudo yum install git`
+If the tunnel won't work, just SSH to the client. You will only be able to use the API through cURL in the terminal.
 
-[Ubuntu]
-Install docker, docker-compose, docker.io packages
+Clone the repo, checkout the 'express' branch, then run the [install.sh](https://github.com/dbalouek/ChoreoMicroservices/blob/express/install.sh) script.
 
-Clone the repo and checkout the 'express' branch:
+This block does everything:
 
 ```
-git clone https://github.com/dbalouek/ChoreoMicroservices.git
-cd ChoreoMicroservices
-git checkout express
-chmod +x install.sh
-./install.sh
+ssh cc@"$FLOATING_IP" << EOF
+  sudo yum install git
+  git clone https://mrswagbhinav:2CQpYjfEXPqNx4@github.com/dbalouek/ChoreoMicroservices.git
+  cd ChoreoMicroservices/
+  git checkout express
+  chmod +x install.sh
+  ./install.sh
+EOF
 ```
-
-then run the [install.sh](https://github.com/dbalouek/ChoreoMicroservices/blob/express/install.sh) script `./install.sh`
 
 The script sets up compose and runs the containers so there is no need to do anything else.
 
