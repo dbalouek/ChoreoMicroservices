@@ -25,10 +25,9 @@ SERVER_NAME="$LEASE_NAME"
 # Test that you can authenticate
 if [[ "${OS_PROJECT_NAME:+x}" != "x" ]]; then
   echo "No project could automatically be detected."
-  # exit
+  exit
 fi
 openstack token issue >/dev/null && echo "Successfully authenticated to project $OS_PROJECT_NAME"
-openstack server list
 
 
 # Create a reservation
