@@ -2,6 +2,12 @@
 
 ## Connecting to Chameleon Cloud
 
+The Openstack CLI isn't working, but it works on chameleon cloud's jupyter notebook.
+[setup.sh](https://github.com/dbalouek/ChoreoMicroservices/blob/express/setup.sh) won't
+work but the script in the notebook is identical. Here is the
+[link](https://jupyter.chameleoncloud.org/user/abhinav5/lab/tree/setup.ipynb). It should take care of everything but if the
+SSH doesn't work then you need to follow the instructions below.
+
 Start an SSH tunnel to the instance: `ssh -L 8080:localhost:8080 cc@$FLOATING_IP`
 
 If the tunnel won't work, just SSH to the client. You will only be able to use the API through cURL in the terminal.
@@ -11,7 +17,7 @@ Clone the repo, checkout the 'express' branch, then run the [install.sh](https:/
 This block does everything:
 
 ```
-ssh cc@"$FLOATING_IP" << EOF
+ssh cc@$FLOATING_IP << EOF
   sudo yum install git
   git clone https://mrswagbhinav:2CQpYjfEXPqNx4@github.com/dbalouek/ChoreoMicroservices.git
   cd ChoreoMicroservices/

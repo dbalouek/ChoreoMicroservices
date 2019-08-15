@@ -73,7 +73,7 @@ read pass
 # ssh -L 8080:localhost:8080 cc@"$FLOATING_IP" echo 'User $(whoami) connected on $(hostname)!' << EOF
 ssh cc@"$FLOATING_IP" << EOF
   sudo yum install git
-  git clone https://mrswagbhinav:2CQpYjfEXPqNx4@github.com/dbalouek/ChoreoMicroservices.git
+  git clone https://$user:$pass@github.com/dbalouek/ChoreoMicroservices.git
   cd ChoreoMicroservices/ 
   git checkout express
   chmod +x install.sh
